@@ -1,0 +1,51 @@
+{
+  "name": "youtube-client",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next & npm run dev:css",
+    "dev:css": "postcss styles/index.css --watch --config styles/config/postcss.config.js -o static/css/bundle.css",
+    "build": "next build & npm run build:css",
+    "build:css": "postcss styles/index.css --config styles/config/postcss.config.js -o static/css/bundle.css",
+    "start": "next start"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.10",
+    "graphql": "0.13.2",
+    "isomorphic-unfetch": "2.0.0",
+    "next": "^6.1.0",
+    "react": "^16.4.1",
+    "react-apollo": "^2.1.7",
+    "react-dom": "16.4.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.6.4",
+    "cssnano": "^4.0.0-rc.2",
+    "husky": "^1.0.0-rc.9",
+    "lint-staged": "^7.2.0",
+    "postcss": "^6.0.21",
+    "postcss-cli": "^5.0.1",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-import": "^11.1.0",
+    "postcss-preset-env": "^3.4.0",
+    "prettier": "^1.13.6",
+    "tailwindcss": "^0.6.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "ignore": [
+      "styles/**/*.js"
+    ],
+    "linters": {
+      "*.js": [
+        "prettier --write",
+        "git add"
+      ]
+    }
+  },
+  "author": "Josef Rousek",
+  "license": "MIT"
+}
