@@ -13,7 +13,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="stylesheet" href="/static/css/bundle.css" />
         </Head>
-        <body>
+        <body className="font-sans bg-grey-lighter flex flex-col min-h-screen">
           <Main />
           <NextScript />
         </body>

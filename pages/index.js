@@ -1,1 +1,7 @@
-export default () => <div>hello</div>;
+import Header from "../components/Header";
+
+export default () => (
+  <div>
+    <Header />
+  </div>
+);
