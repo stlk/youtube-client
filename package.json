@@ -9,9 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "apollo-boost": "^0.1.10",
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link": "^1.2.2",
+    "apollo-link-error": "^1.1.0",
     "apollo-link-rest": "^0.3.1",
+    "apollo-link-state": "^0.4.1",
     "graphql": "0.13.2",
+    "graphql-tag": "^2.9.2",
     "next": "^6.1.0",
     "node-fetch": "^2.1.2",
     "react": "^16.4.1",

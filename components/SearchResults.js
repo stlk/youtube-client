@@ -1,22 +1,17 @@
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import SearchResult from "./SearchResult";
+import Query from "./Query";
 
-function SearchResults({ data: { error, searchPayload } }) {
-  if (error) return <div>Error loading videos.</div>;
-  if (searchPayload && searchPayload.items && searchPayload.items.length) {
-    return (
-      <section>
-        {searchPayload.items.map(item => (
-          <SearchResult key={item.idObject.videoId} video={item} />
-        ))}
-      </section>
-    );
+const SEARCH_QUERY = gql`
+  {
+    search @client {
+      searchQuery @client
+    }
   }
-  return <div>Loading...</div>;
-}
+`;
 
-export const searchResults = gql`
+export const SEARCH_RESULTS = gql`
   query search($query: String!) {
     searchPayload(query: $query)
       @rest(
@@ -44,17 +39,21 @@ export const searchResults = gql`
     }
   }
 `;
-export const searchResultsQueryVars = {
-  query: "microconf"
-};
 
-export default graphql(searchResults, {
-  options: {
-    variables: searchResultsQueryVars
-  },
-  props: ({ data }) => {
-    return {
-      data
-    };
-  }
-})(SearchResults);
+export default () => (
+  <Query query={SEARCH_QUERY}>
+    {({ search }) => (
+      <Query query={SEARCH_RESULTS} variables={{ query: search.searchQuery }}>
+        {({ searchPayload }) =>
+          searchPayload && searchPayload.items && searchPayload.items.length ? (
+            <section>
+              {searchPayload.items.map(item => (
+                <SearchResult key={item.idObject.videoId} video={item} />
+              ))}
+            </section>
+          ) : null
+        }
+      </Query>
+    )}
+  </Query>
+);
