@@ -46,7 +46,7 @@ export default () => (
       <Query query={SEARCH_RESULTS} variables={{ query: search.searchQuery }}>
         {({ searchPayload }) =>
           searchPayload && searchPayload.items && searchPayload.items.length ? (
-            <section>
+            <section className="p-4">
               {searchPayload.items.map(item => (
                 <SearchResult key={item.idObject.videoId} video={item} />
               ))}
